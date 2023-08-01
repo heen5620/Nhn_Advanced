@@ -1,0 +1,149 @@
+8월1일 - 체험과정 2일차
+
+변수는 이름, 값, 범위(scope), 타입(저장공간의 크기, 값의 해석), 라이프타임,  
+=> 이러한 속성들 즉 변수의, 이름이 나머지 속성들을 가추린다 -> Abstraction... 
+
+뭔가의 속성이 결정되는 것을 => binding (static binding, dynamic binding)
+속성이 결정되는 시간을 => binding time 
+
+클래스 메서드
+
+    static double func(double... numbers) {  
+        double sum = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            sum = sum + numbers[i];
+        }
+        return sum;
+    }
+
+#여기서 런타임 진행이 될 때 numbers는 결정이 된다?? Local 변수, sum도 Local 변수 
+같은 local 변수인데 매개변수이냐 OO변수이냐에 따라서... 
+ 
+ public final class PrintArgs.. -> final 사용해서 PrintArgs라는 클래스 이름을 상수화 즉 고정 하려면 final을 사용한다.
+
+ static int func(int x) {
+        return x * (x + 1) / 2;
+    }
+## static 함수 사용하는 이유? => 구분하기 위해...? 그냥 함수?
+
+엘리어싱?
+주소를 건네주냐 , 값을 건네주냐 call by value.. 냐에 따라서 ~가 다르다... 
+call by reference 가 사용될 때 , call by value가 사용 될 때..?
+
+
+값 자체가 주소이기때문에 call by reference 처럼 보인다??? 
+
+new로 만든 변수는 별도로 마련해놓는다... Heap??? 프로그램이 실제로 가동이 되야 알 수 있는 것들
+메모리를 미리 확보해서 공간을 만들어 둘 수 없다 그렇기에 Heap? 사용한다??? 
+
+# garbagecollector를 사용하는 이유, 언제 사용되는지, 수집 대상? 
+
+#reference counter?
+
+#메모리 성능 효율 관리를 중요하게 따져야한다
+
+#procedure
+
+
+
+
+##오후 수업 내용 
+
+package practice;
+
+public class BinaryOperation {
+    public double apply(double x, double y);  // public을 붙여줘야 내가 한 약속을 공표한다.. 라는 의미를 가진다
+
+}
+
+
+interface new() 이런거 관심없고, ~를 나열 한것. 
+
+interface는 지켜야 할 조건만을 기술한다. 클래스 처럼 new() 가 생성되지 못한다.
+
+서브타입 대치에 대한 규칙?
+
+
+제약조건을 완화 하는것은 Super타입이고, 제약조건을 좀 더 상세하게 하는 것은 서브타입이 하는거라고 생각하면 된다.
+
+
+
+
+package practice;
+
+import java.util.function.BinaryOperator;
+
+public class Mathx {
+
+    static double reduce(BinaryOperation binaryOperation, double init, double... numbers) {
+        double result = init;
+        for (double number : numbers) { // Licskov's Substitution Principle = LSP
+            result = binaryOperation.apply(result, number);
+        }
+        return result;
+
+    }
+
+    static double reduceIf(Predicate predicate, BinaryOperation binaryOperation, double init,
+            double... numbers) {
+        double result = init;
+        for (double number : numbers) { // Licskov's Substitution Principle = LSP
+            if (predicate.apply(number))
+                result = binaryOperation.apply(result, number);
+        }
+        return result;
+
+    }
+
+    static double product(double... numbers) {
+        return reduce(new Multiply(), 1, numbers);
+    }
+
+    static double sum(double n) { // Overloading
+        return (n * (n + 1)) / 2;
+    }
+
+    static double Sum(double... numbers) {
+        return reduce_sum(new Multiply(), 0, numbers);
+    }
+
+
+
+}
+
+
+
+
+package practice;
+
+public final class Plus implements BinaryOperation {
+
+    @Override
+    public double apply(double x, double y) {
+        return x + y;
+    }
+
+}
+
+
+
+
+ static double reduce(BinaryOperation binaryOperation, double init, double... numbers) {
+        double result = init;
+        for (double number : numbers) {
+            result = binaryOperation.apply(result, number);
+        }
+        return result;
+    }
+
+    static double sum(double... numbers) {
+        return reduce(new Plus(), 0, numbers);
+    }
+
+    static double multiply(double... numbers) {
+        return reduce(new Multiply(), 1, numbers);
+    }
+
+
+
+//todo 오늘 했던 것들, 인터페이스를 만들어서 덧셈, 곱셈, 람다식 reduce 표현, 어나니머스로, reduceIf 사용해 짝수만 걸러내 T/F 출력하는거 확인하기.
