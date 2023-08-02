@@ -6,7 +6,7 @@ import javax.swing.text.Style;
 public class FibonacciTest {
 
     public static void baseCase() {
-        if (fibonacci(0) == 0 && fibonacci(1) == 1)
+        if (fibonacci_iterative(0) == 0 && fibonacci_iterative(1) == 1)
             return;
         System.exit(1);
     }
