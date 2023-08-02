@@ -111,9 +111,6 @@ public class Mathx {
 
 }
 
-
-
-
 package practice;
 
 public final class Plus implements BinaryOperation {
@@ -124,8 +121,6 @@ public final class Plus implements BinaryOperation {
     }
 
 }
-
-
 
 
  static double reduce(BinaryOperation binaryOperation, double init, double... numbers) {

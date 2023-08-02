@@ -1,6 +1,6 @@
 package practice;
 
-public class MathxTest extends Mathx {
+public class MathxTest1st extends Mathx {
     public static void main(String[] args) {
         double[] numbers = new double[args.length];
 
@@ -20,7 +20,7 @@ public class MathxTest extends Mathx {
             public double apply(double x, double y) {
                 return x + y - 1;
             }
-        }, 0, 1, 2)); 
+        }, 0, 1, 2));
         System.out.println(reduceIf(x -> x % 2 == 0, new Plus(), 0, 1, 2, 3, 4, 5));
 
         // double[] arr = new double[args.length];
