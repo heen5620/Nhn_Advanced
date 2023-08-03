@@ -48,7 +48,8 @@ public class FractionalTest {
 
 
     public static void main(String[] args) {
-        int[][] arr = {fractional(1, 2)}; // 왜 2차원 배열로 선언하는걸까??? 분자, 분모따로 저장하기 위해서?
+        int[][] arr = {fractional(1, 2)}; // 왜 2차원 배열로 선언하는걸까 => 분모, 분자는 1차원으로 따로 받고, 분자, 분모를 동시에
+                                          // 출력하기 위해 2차원이 필요하다.
         for (int[] r : arr) {
             System.out.println(toString(r));
         }
