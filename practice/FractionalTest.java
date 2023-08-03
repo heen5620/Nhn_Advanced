@@ -1,16 +1,13 @@
 package practice;
 
 public class FractionalTest {
-    private FractionalTest() {
-
-    }
+    private FractionalTest() {}
 
     public static int[] fractional(int numerator, int denomiator) {
         if (denomiator == 0)
             throw new IllegalArgumentException("Bonnja is 0! ");
         // int[] rep = new int[] {numerator, denomiator};
         // normalization(rep);
-        // classInvariant(rep);
         // int a = gcd(numerator, denomiator);
         return new int[] {numerator, denomiator};
     }
@@ -24,17 +21,18 @@ public class FractionalTest {
         return x;
     }
 
-    public static int numerator(int[] r) {
+    private static int numerator(int[] r) {
+        normalization(r);
         return r[0];
     } // 분자 //selector //getter
 
-    public static int denomiator(int[] r) {
+    private static int denomiator(int[] r) {
+        normalization(r);
         return r[1];
     } // 분모 //getter
 
     private static void normalization(int[] r) {
-        int g = Mathx.gcd(r[0], r[1]);
-
+        int g = gcd(r[0], r[1]);
         r[0] /= g;
         r[1] /= g;
     }
@@ -44,17 +42,21 @@ public class FractionalTest {
                 denomiator(r1) * denomiator(r2));
     }
 
-    public static boolean equals(int[] x, int[] y) {
-        return numerator(x) == numerator(y) && denomiator(x) == denomiator(y);
-    }
+    // 1/2 , 2/4
+    // public static boolean equals(int[] x, int[] y) {
+    // return numerator(x) == numerator(y) && denomiator(x) == denomiator(y);
+    // }
 
     private static String toString(int[] add) {
-        String string = add[0] + "/" + add[1];
+        String string = numerator(add) + "/" + denomiator(add);
         return string;
     }
 
     public static void main(String[] args) {
         int[][] rs = {fractional(1, 2), fractional(2, 4), fractional(4, 8), fractional(5, 10)};
+
+        // add(fractional(1, 2), fractional(4, 8));
+
         for (int[] r : rs) {
             System.out.println(toString(r));
         }
@@ -66,7 +68,8 @@ public class FractionalTest {
         // System.out.println(toString(add(fractional(1, 2), fractional(4, 8))));
         // System.out.println(x == y); // false
         // System.out.println(add(x, y) == add(z, w)); // false 왜 false false가 나오나?
-        // System.out.println(add(fractional(1, 2), fractional(4,) );
+        int arr[] = add(fractional(1, 2), fractional(4, 8));
+        System.out.println(arr[0] + "/" + arr[1]);
 
 
         // double[] arr = new double[args.length];

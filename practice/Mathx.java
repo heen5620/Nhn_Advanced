@@ -40,6 +40,9 @@ public class Mathx {
         return sum(range.getUpperBound()) - sum(range.getLowerBound() - 1);
     }
 
+    // public static int[] array(int numerator, int denomiator){
+    // return int array[] {numerator,denomiator};
+    // }
     // static double sum(double... numbers) {
     // return reduce(new Plus(), 0, numbers);
     // }
