@@ -6,9 +6,7 @@ public final class Range {
 
     public Range(int lowerBound, int upperBound) {
         this.upperBound = upperBound;
-        this.lowerBound = lowerBound;
-
-
+        this.lowerBound = lowerBound;\
     }
 
     public Range(int upperBound) {
