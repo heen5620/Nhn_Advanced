@@ -2,7 +2,6 @@ package practice;
 
 import Urisu.mathxx;
 
-
 // How to design a type// (1) primitive operation to define a (data) type (set)
 // - ADT (abstraction data type, where primitives = abstraction barrier)
 // abstraction barrier

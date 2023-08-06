@@ -23,6 +23,7 @@ public class Mathx {
         return reduceIf(x -> true, binaryOperation, init, numbers);
     }
 
+    // value semantics
     static <T> T reduceIf(Predicate<T> predicate, BinaryOperator<T> binaryOperation, T init,
             T... numbers) {
         T result = init;
@@ -33,7 +34,7 @@ public class Mathx {
         return result;
     }
 
-    static double product(double... numbers) {
+    static <T> T product(T... numbers) {
         return reduce(new Multiply(), 1, numbers);
     }
 
@@ -64,7 +65,7 @@ public class Mathx {
     static double reduce_sum(BinaryOperation binaryOperation, double init, double... numbers) {
         double result = init;
         for (double number : numbers) {
-            result = binaryOperation.apply(result, number);
+            // result = binaryOperation.apply(result, number);
         }
 
         return result;
@@ -77,3 +78,4 @@ public class Mathx {
 
 
 }
+// value simetics, reference simetics -> equaliti

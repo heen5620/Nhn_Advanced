@@ -22,5 +22,4 @@ public class MathxTest {
         FactorialTest.preCondition();
         FactorialTest.postCondition();
     }
-
 }
