@@ -1,11 +1,9 @@
 package Practic_alone;
 
 public class Main {
-    // 피보나치 수열 출력
-
     public static int Fibonacci(int number) {
         if (number < 0)
-            throw new IllegalArgumentException("Wron numebr!");
+            throw new IllegalArgumentException("Wrong numebr!");
         else if (number == 1)
             return 1;
         else if (number == 2)
