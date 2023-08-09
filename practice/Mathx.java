@@ -1,5 +1,6 @@
 package practice;
 
+import java.util.Iterator;
 import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 
@@ -19,7 +20,7 @@ public class Mathx {
     // }
 
     // fold-(right, left)
-    static <T> T reduce(BinaryOperator<T> binaryOperation, T init, T... numbers) {
+    static <T> T reduce(BinaryOperator<T> binaryOperation, T init, Iterator<T> Iterator) {
         return reduceIf(x -> true, binaryOperation, init, numbers);
     }
 

@@ -1,10 +1,7 @@
 package regular;
 
 public final class Star implements Expression {
-    @Override
-    public String toString() {
-        return "(" + this.getExpression() + ")" + "*";
-    }
+
 
     private Expression expression;
 
@@ -14,6 +11,10 @@ public final class Star implements Expression {
 
     public Expression getExpression() {
         return expression;
+    }
+
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }
 
