@@ -1,19 +1,21 @@
 package Practic_alone;
 
+import java.util.*;
+
 public class Main {
-    public static int Fibonacci(int number) {
-        if (number < 0)
-            throw new IllegalArgumentException("Wrong numebr!");
-        else if (number == 1)
-            return 1;
-        else if (number == 2)
-            return 1;
-
-        return Fibonacci(number - 1) + Fibonacci(number - 2);
-    }
-
     public static void main(String[] args) {
-        int result = Fibonacci(3);
-        System.out.println(result);
+        ArrayList<Integer> number = new ArrayList<>();
+
+        number.add(10);
+        number.add(15);
+
+        int sum = 0;
+
+        Iterator<Integer> s = number.iterator();
+
+        for (Integer integer : number) {
+            sum += s.next();
+        }
+        System.out.println(sum);
     }
 }

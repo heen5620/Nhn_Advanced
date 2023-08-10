@@ -3,82 +3,83 @@ package practice;
 import java.util.Iterator;
 import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
+import javax.swing.JSpinner.NumberEditor;
 
 public class Mathx {
 
-    static double product(double i, double j) {
-        return i * j;
+    static <T> T reduce(BinaryOperator<T> binaryOperation, T init, Iterator<T> iterator) {
+        return reduceIf(x -> true, binaryOperation, init, iterator);
     }
 
-    // static double product(double... numbers) {
-    // double result = 1;
-    // for (double number : numbers) {
-    // result = result * number;
-    // }
-    // return result;
-
+    // static <T> T sum(T x, T y) {
+    // return reduce((x, y) -> x + y, 0, iterator);
     // }
 
-    // fold-(right, left)
-    static <T> T reduce(BinaryOperator<T> binaryOperation, T init, Iterator<T> Iterator) {
-        return reduceIf(x -> true, binaryOperation, init, numbers);
-    }
+    // static <T> T mul(T x, T y) {
+    // return reduce((x, y) -> x * y, 1, iterator);
+    // }
 
     // value semantics
     static <T> T reduceIf(Predicate<T> predicate, BinaryOperator<T> binaryOperation, T init,
-            T... numbers) {
+            Iterator<T> iterator) {
         T result = init;
-        for (int index = 0; index < numbers.length; index++) { // Licskov's Substitution Principle =
-                                                               // LSP numbers에 들어오는 원소들은
-            // iterable한 원소들이 들어와야함.
-            if (predicate.test(numbers[index]))
-                result = binaryOperation.apply(result, numbers[index]);
-        }
-        return result;
-    }
-
-    static <T> T product(T... numbers) {
-        return reduce(new Multiply(), 1, numbers);
-    }
-
-    // sum :: int -> int
-    static double sum(double n) { // Overloading
-        return (n * (n + 1)) / 2;
-    }
-
-    static int sum(Range range) {
-        return (int) (sum(range.getUpperBound()) - sum(range.getLowerBound() - 1)); // upperBound 범위
-                                                                                    // 중
-                                                                                    // 가장
-                                                                                    // 큰 값
-    }
-
-    // sum :: (int, int) -> int
-    // class meathod(?)
-    static double sum(double... numbers) { // type signature
-        double result = 0;
-        // call by value 이나 건내준 값이 "주소값"이라 call by reference와 동일한 효과
-        for (int index = 0; index < numbers.length; index++) { // result, indiex, numbers =
-                                                               // local변수
-            result = result + numbers[index]; // 매개변수 = Dynamic, 지역변수 = Static
-        }
-        return result;
-    }
-
-    static double reduce_sum(BinaryOperation binaryOperation, double init, double... numbers) {
-        double result = init;
-        for (double number : numbers) {
-            // result = binaryOperation.apply(result, number);
+        while (iterator.hasNext()) {
+            T i = iterator.next();
+            if (predicate.test(i))
+                result = binaryOperation.apply(i, result);
         }
 
         return result;
     }
 
-    static double Sum(double... numbers) {
-        return reduce_sum(new Multiply(), 0, numbers);
+    public static <T> T product(Iterator<T> iterator, T init) {
+        return reduce_sum(new Plus(), init, iterator);
+    }
+
+    static <T> T reduce_sum(BinaryOperation binaryOperation, T init, Iterator<T> iterator) {
+        T result = init;
+        while (iterator.hasNext()) {
+            result = (T) binaryOperation.apply((Number) result, (Number) iterator.next());
+        }
+        return result;
     }
 
 
+
+    // public static <T> T reduceIf(Predicate<T> predicate, BinaryOperator<T> binaryOperator, T
+    // init,
+    // Iterator<T> iterator) {
+    // T result = init;
+    // for (T number : numbers) { // Licskov's Substitution Principle = LSP -> T의 타입이나 서브타입만가능함
+    // if (predicate.test(number)) {
+    // result = binaryOperator.apply(result, number);
+    // }
+
+    // for (int index = 0; index < numbers.length; index++) { // 이런식으로 작성되면, 배열을 제외한 다른것들은 들어올 수
+    // // 없음.)
+    // if (predicate.test(numbers[index])) {
+    // result = binaryOperator.apply(result, numbers[index]);
+    // }
+    // }
+    // return result;
+    // }
+
+    // public static int sum(int n) {
+    // return n * (n + 1) / 2;
+    // }
+
+    // public static int sum(Range range) {
+    // return sum(range.getUpperBound()) - sum(range.getLowerBound() - 1);
+    // }
+
+    // public static long gcd(long a, long b) {
+    // long n;
+    // while (b != 0) {
+    // n = a % b;
+    // a = b;
+    // b = n;
+    // }
+    // return a;
+    // }
 
 }
-// value simetics, reference simetics -> equaliti
