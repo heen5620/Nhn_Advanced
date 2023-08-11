@@ -1,21 +1,6 @@
 package practice;
 
-import Urisu.mathxx;
-
-// How to design a type// (1) primitive operation to define a (data) type (set)
-// - ADT (abstraction data type, where primitives = abstraction barrier)
-// abstraction barrier
-// (2) combinatations (combinational, opersatins) e.g) add,multipl
 public class Fractional extends Number {
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + numerator;
-        result = prime * result + denomiator;
-        return result;
-    }
 
     @Override
     public boolean equals(Object obj) {
@@ -55,8 +40,17 @@ public class Fractional extends Number {
         return this.denomiator;
     } // 분모 //getter
 
+    public int gcd(int numerator, int denomiator) {
+        while (denomiator != 0) {
+            int result = denomiator;
+            denomiator = numerator / denomiator;
+            numerator = result;
+        }
+        return numerator;
+    }
+
     private void normalize() { // 내부 연산
-        int g = mathxx.gcd(this.numerator, this.denomiator);
+        int g = gcd(this.numerator, this.denomiator);
         numerator /= g;
         denomiator /= g;
     }
