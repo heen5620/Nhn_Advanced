@@ -32,9 +32,10 @@ public class MathxTest extends Mathx {
             return true;
         };
         System.out.println(Mathx.reduceIf(x -> x % 2 == 0, (a, b) -> a + b, 0, it)); // 짝수만 판별해 값
-                                                                                     // 더하기
+        // // 더하기
         System.out.println(Mathx.reduce((x, y) -> x + y, 0, it2)); // 그냥 값 더하기
         System.out.println(isPrime.test(10)); // 조건 소수판별 하는 방법.
         // System.out.println(Mathx.reduce_sum(new Plus<>(), 1, it));
+        // System.out.println(Mathx.product(it, 1));
     }
 }
