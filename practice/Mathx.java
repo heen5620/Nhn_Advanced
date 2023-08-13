@@ -11,6 +11,7 @@ public class Mathx {
     }
 
     // value semantics
+
     static <T> T reduceIf(Predicate<T> predicate, BinaryOperator<T> binaryOperation, T init,
             Iterator<T> iterator) {
         T result = init;

@@ -19,9 +19,5 @@ public class RegularExpression {
         System.out.println(PrintableForm.of(a_ab));
         System.out.println(PrintableForm.of(ba_a0n));
 
-        // BinaryOperation e = new Or(a,b);
-        // Expression r = e;
-        // System.out.println(e.then(r));
-
     }
 }

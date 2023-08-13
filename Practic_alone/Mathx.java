@@ -59,8 +59,8 @@ public class Mathx {
     }
 
     public static long sum(Range range) {
-        final long max = range.getMax();
         final long min = range.getMin();
+        final long max = range.getMax();
         return (max - min + 1) * (max + min) / 2;
     }
 }

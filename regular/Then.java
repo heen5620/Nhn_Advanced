@@ -17,7 +17,6 @@ public final class Then extends BinaryOperation implements Expression { // exten
     }
 
 
-
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }

@@ -1,15 +1,14 @@
 package Practic_alone;
 
 public class Range {
-    private final long min;
-    private final long max;
+    private long min;
+    private long max;
 
     public Range(long min, long max) {
-        if (min > max) {
+        if (min > max)
             throw new IllegalArgumentException("Invalid range: min > max");
-        }
-        this.min = min;
         this.max = max;
+        this.min = min;
     }
 
     public long getMin() {
@@ -19,4 +18,6 @@ public class Range {
     public long getMax() {
         return max;
     }
+
 }
+

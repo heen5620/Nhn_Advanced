@@ -32,8 +32,6 @@ public final class PrintableForm implements regular.Visitor {
         printableFormStringBuilder.append(e.getOperator());
         e.getRight().accept(this);
         printableFormStringBuilder.append(')');
-
-
     }
 
     @Override
@@ -42,7 +40,6 @@ public final class PrintableForm implements regular.Visitor {
         e.getExpression().accept(this);
         printableFormStringBuilder.append(")");
     }
-
 
     public static String of(Expression e) {
         PrintableForm printableForm = new PrintableForm();
